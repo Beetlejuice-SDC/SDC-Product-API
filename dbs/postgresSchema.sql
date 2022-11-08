@@ -73,3 +73,13 @@ COPY features FROM '/Users/liuqian/Desktop/CS learning_Hack Reactor /2209 HR imm
 COPY related FROM '/Users/liuqian/Desktop/CS learning_Hack Reactor /2209 HR immersive course/SDC/SDC-Product-API/data/related.csv' (format csv, null "null", DELIMITER ',', HEADER);
 COPY photos FROM '/Users/liuqian/Desktop/CS learning_Hack Reactor /2209 HR immersive course/SDC/SDC-Product-API/data/photos.csv' (format csv, null "null", DELIMITER ',', HEADER);
 COPY skus FROM '/Users/liuqian/Downloads/skus.csv' (format csv, null "null", DELIMITER ',', HEADER);
+
+CREATE INDEX idx_id_products ON products (id);
+CREATE INDEX idx_productsId_styles ON styles (productId);
+CREATE INDEX idx_productid_features ON features (product_id);
+CREATE INDEX idx_styleId_skus on skus (styleId);
+CREATE INDEX idx_styleid_styles ON styles (id);
+CREATE INDEX idx_styleId_photos ON photos(styleId);
+CREATE INDEX idx_id_related ON related(current_product_id);
+
+-- CREATE INDEX idx_id_styles ON styles (id);

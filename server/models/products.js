@@ -1,22 +1,24 @@
 const db = require ('../../dbs/db.js')
 
-var product = function (count, page) {
-  console.log('page is is ', page, (page-1) * count)
-  var products =
-  db.client.query(`
+var product = (count, page) => {
+  // console.log('page is is ', page, (page-1) * count)
+  // const client = await db.pool.connect();
+
+  var products = db.pool.query(`
     SELECT
      *
     FROM products
     ORDER BY id
     LIMIT ${count} OFFSET ${(page-1) * count}
     `)
+
   return products;
 }
 
 
 var feature = function (product_id) {
   var productFeature =
-  db.client.query(`select products.*,
+  db.pool.query(`select products.*,
   jsonb_agg(to_jsonb(features)-'id' -'product_id') AS features
   FROM products
   LEFT JOIN features on products.id = features.product_id
@@ -27,7 +29,7 @@ var feature = function (product_id) {
 
 var style = function (product_id) {
   var productStyle =
-  db.client.query(`
+  db.pool.query(`
     select
       styles.id AS style_id,
       styles.name,
@@ -47,7 +49,7 @@ var style = function (product_id) {
 
 var related = function (product_id) {
   var productRelated =
-  db.client.query(`
+  db.pool.query(`
     select
       related_product_id
     FROM related
