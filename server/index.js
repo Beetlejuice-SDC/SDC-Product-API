@@ -13,7 +13,8 @@ const app = express();
 app.use(express.json());
 app.use('/products', productRoutes);
 // Serves up all static and generated assets in ../client/dist.
-// app.use(express.static(path.join(__dirname, "../client/dist")));
+// app.use(express.static(path.join(__dirname, "./client/dist")));
+app.use(express.static("public"));
 
 
 app.listen(process.env.PORT);
