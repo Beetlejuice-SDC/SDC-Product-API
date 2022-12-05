@@ -99,7 +99,7 @@ var styles = (req, res) => {
       }
       res.send(obj)
     }catch (err) {
-      console.log(err.stack)
+      res.send(err)
     } finally {
       client.release()
     }
