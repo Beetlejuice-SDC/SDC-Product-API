@@ -3,7 +3,7 @@ const controller = require('./product.js');
 const { Pool } = require('pg');
 const axios = require('axios');
 
-
+// Set up Jest and create mock for postgres client
 jest.mock('pg', () => {
   const mPool = {
     connect: function () {
@@ -14,7 +14,7 @@ jest.mock('pg', () => {
   return { Pool: jest.fn(() => mPool) };
 });
 
-describe('test products API', () => {
+describe('Product APIs test suite', () => {
   let pool;
   beforeEach(() => {
     pool = new Pool();
@@ -22,11 +22,11 @@ describe('test products API', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  it('test product lists api', async () => {
-    // setup
-    // create mock db results
-    var rows = [123]
-    var results = { 'rows': rows, rowCount: 0 }
+  it('Test getProducts API should return requested products.', async () => {
+    // setup - create mock db results
+    var rows = [123];
+    var results = { 'rows': rows, rowCount: 0 };
+
     // inject the mock db results to pool.query
     pool.query.mockResolvedValueOnce(results);
     var res = {send: (x) => {}};
@@ -57,6 +57,7 @@ describe('test products API', () => {
   //   expect(failure).toBeCalledWith({ message: mError, status: false });
   // });
 });
+
 // Unit test result with 100% cover
 const URL = `http://localhost:${process.env.PORT}`;
 

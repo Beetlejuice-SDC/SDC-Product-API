@@ -132,7 +132,6 @@ var validateProductId = (req, res) => {
 }
 
 module.exports.products = products;
-// module.exports.productNew = productNew;
 module.exports.productInfo = productInfo;
 module.exports.styles = styles;
 module.exports.related = related;
