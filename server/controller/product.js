@@ -81,7 +81,7 @@ var styles = (req, res) => {
       }
       res.send(obj);
     } catch (err) {
-      var errMessage = `Failed to get product info for product ${productId}`;
+      var errMessage = `Failed to get product styles for product ${productId}`;
       console.error(errMessage, err);
       res.status(500).send(errMessage, err);
     } finally {
