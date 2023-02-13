@@ -13,12 +13,6 @@ jest.mock('pg', () => {
   };
   return { Pool: jest.fn(() => mPool) };
 });
-// jest.mock('./handler.js', () => {
-//   return {
-//     success: jest.fn(),
-//     failure: jest.fn(),
-//   };
-// });
 
 describe('test products API', () => {
   let pool;
